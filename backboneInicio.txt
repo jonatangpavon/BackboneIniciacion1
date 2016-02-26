@@ -1,0 +1,91 @@
+npm init
+Te pedira lo siguiente:
+package.json
+{
+ "name": "sandbox",
+ "version":"0.0.0",
+ "description": "",
+ "main": "index.js",
+ "author": "Jonatan",
+ "dependencies":{}
+
+}
+
+npm install backbone --save  
+
+
+Nota: save para guardar la dependecia.
+
+npm install jquery --save
+
+
+
+Foma con commonjs:
+npm install requirejs
+Guardar en una variable el script backbone.
+Ejecutamos la conla node:
+var Backbone = require('backbone');
+
+Editamos con sublime
+Creamos un fichero greeting.js
+
+module.exports = function(){
+	console.log("Hello, World");
+};
+
+Ejecutamos con ctrl + B en sublime
+
+En la consola de node ejecutar require.
+var greeting = require('./greeting');
+greeting();
+
+Crear un directorio para los javascripts sources
+mkdir app 
+Crear un directorio para los javascripts estáticos:
+mkdir static
+
+
+
+Creas un nuevo js llamado appendFooter.js que modifica el pie de una página html
+var appendFooter = function(text){
+	var footer = document.createElement('p');
+	footer.innerHtml = text;
+	document.body.appendChild(footer);
+};
+
+appendFooter('The Pipefishbook');
+
+npm install browserify --save
+npm install -g browserify
+
+Desde la consola para generar un script
+browserify appendFooter.js > bundle.js
+
+Ahora en un js metemos backbone: app/main.js
+var Backbone = require('backbone');
+module.exports = function(){
+return Backbone
+
+};
+Y hay que ejecutarcon Control+ B o en la consola node.
+
+Luego ejecutamos
+$node
+require("./app/main")
+y
+require("./app/main")();
+
+Y añadimos con Browserify backbone al anterior bundle.js
+browserify ./app/main.js > ./static/js/bundle.js
+
+
+Y vemos que añade el app/main
+browserify -r ./app/main:app > ./static/js/bundle.js
+
+Abrir la pagina html y ejecutar en la consola require("app");
+Probar tambien watchify.
+
+
+
+
+
